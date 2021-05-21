@@ -32,25 +32,27 @@
 # Contact: dreibh@simula.no
 
 if [ $# -lt 3 ] ; then
-   MEASUREMENT_ID="$1"
-   NETWORK_ID="$2"
-   METADATA_IF="$3"
+   echo "Usage: $0 measurementID networkID metadataIF"
+   exit 1
+fi
 
-   ENDPOINT="77.243.61.202"
+MEASUREMENT_ID="$1"
+NETWORK_ID="$2"
+METADATA_IF="$3"
 
-   if [ ! -e /opt/monroe/experiment.sh ] ; then
-      cd /opt/monroe
-      tar xzf pelinux_amd64_96.tar.gz
-      echo "$ENDPOINT" | ./endpoint.install accept_license
+ENDPOINT="77.243.61.202"
 
-      # ====== Create experiment.sh ============================================
-      # NOTE: /opt/monroe/experiment.sh will be started automatically from
-      # /etc/rc.local.
-      cat >/opt/monroe/experiment.sh <<EOF
+if [ ! -e /opt/monroe/experiment.sh ] ; then
+   cd /opt/monroe
+   tar xzf pelinux_amd64_96.tar.gz
+   echo "$ENDPOINT" | ./endpoint.install accept_license
+
+   # ====== Create experiment.sh ============================================
+   # NOTE: /opt/monroe/experiment.sh will be started automatically from
+   # /etc/rc.local.
+   cat >/opt/monroe/experiment.sh <<EOF
 #!/bin/bash
 /usr/local/Ixia/endpoint 1>>/var/local/endpoint.console 2>&1 &
 EOF
-      chmod +x /opt/monroe/experiment.sh
-   fi
-
+   chmod +x /opt/monroe/experiment.sh
 fi
