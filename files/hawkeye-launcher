@@ -158,9 +158,9 @@ while True:
       if not measurementID in processes:
          logging.debug('Starting instance ' + str(measurementID) + ' on ' + metadataIF + ' ...')
          processes[measurementID] = subprocess.Popen([ '/opt/monroe/hawkeye',
-                                                       '-i', str(measurementID),
-                                                       '-N', str(networkID),
-                                                       '-I', metadataIF ])
+                                                       str(measurementID),
+                                                       str(networkID),
+                                                       metadataIF ])
          logging.debug('Started instance ' + str(measurementID) + ' on ' + metadataIF)
 
 
