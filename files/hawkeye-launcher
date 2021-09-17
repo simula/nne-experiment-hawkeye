@@ -64,6 +64,8 @@ except:
    sys.stderr.write('Unable to read configuration from ' + CONFIG_FILE + '!\n')
    sys.exit(1)
 
+print(configuration)
+
 try:
    mcc           = configuration['mcc']
    mnc           = configuration['mnc']
