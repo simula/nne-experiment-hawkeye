@@ -46,5 +46,5 @@ RUN env LANG=C.UTF-8 DEBIAN_FRONTEND=noninteractive apt-get install -y python3 p
 # RUN apt-get install -y joe less psmisc mlocate bash-completion && updatedb
 RUN apt-get clean
 
-ENTRYPOINT [ "dumb-init", "--", "/usr/bin/python3", "/opt/monroe/hawkeye" ]
+ENTRYPOINT [ "dumb-init", "--", "/opt/monroe/hawkeye" ]
 #ENTRYPOINT [ "/sbin/init" ]
